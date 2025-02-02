@@ -37,6 +37,7 @@ docker ps
 # Deve existir 2 container com os nomes: postgres-Tomticket e get-Tomticket
 ```
 **Dessa forma ele fara o que já esta configurado no Docker-compose**
+
 5. Verificando logs do sistema para validar se esta tudo ok.
 ```
 # Encontrando o container
