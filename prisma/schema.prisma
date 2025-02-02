@@ -1,0 +1,83 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Ticket {
+  id                         String      @id
+  protocol                   Int         @unique
+  subject                    String
+  message                    String
+  customer_id                String
+  customer                   Customer   @relation(fields: [customer_id], references: [id])
+  priority                   Int
+  ticket_type                String
+  creation_date              String
+  end_date                   String?
+  situation_id               Int
+  category_id                String?
+  category                   Category?  @relation(fields: [category_id], references: [id])
+  department_id              String
+  department                 Department @relation(fields: [department_id], references: [id])
+  operator_id                String?
+  operator                   Operator?  @relation(fields: [operator_id], references: [id])
+  
+  @@map("ticket")
+}
+
+model Customer{
+  id    String @id @default(uuid())
+  name  String 
+  email String @unique
+  internal_id String?
+  organization_id String?
+  organization  Organization? @relation(fields: [organization_id], references: [id])
+  ticket Ticket[]
+
+  @@map("customer")
+}
+
+model Organization {
+  id    String  @id
+  name  String 
+  customer Customer[]
+
+  @@map("organization")
+}
+
+model Operator {
+  id    String @id
+  name  String
+  ticket Ticket[]
+
+  @@map("operator")
+}
+
+model Department {
+  id    String @id
+  name  String
+  ticket Ticket[]
+
+  @@map("department")
+}
+
+model Category {
+  id    String @id
+  name  String
+  ticket Ticket[]
+
+  @@map("category")
+}
+
+model ExecutionLog{
+  id           String @id @default(uuid())
+  dateFormated String
+  result       String
+  error        String?
+
+  @@map("execution_log")
+}
