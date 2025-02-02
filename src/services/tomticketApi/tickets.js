@@ -131,39 +131,15 @@ export async function setCustomers (dataApi) {
     para não gerar problemas a criação de chamados internos.
 
     mude o uuid para o que for da sua organização criada no proprio tomticket
-    {
+    
+    customerList[{
       name: "nome Atendente",
       email: "atendente@example.com",
       organization_id: "uuid"
-    },
+    },]
   */ 
 
-  let customerList = [{
-    name: "Carlos Mendes",
-    email: "carlos@dsx.com.br",
-    organization_id: "4e2f48e14d571f594306ef424d6e5143"
-    },
-    {
-      name: "Gabriel Cunha",
-      email: "gabriel@dsx.com.br",
-      organization_id: "4e2f48e14d571f594306ef424d6e5143"
-    },
-    {
-      name: "Suporte - DSX",
-      email: "support@dsx.com.br",
-      organization_id: "4e2f48e14d571f594306ef424d6e5143"
-    },
-    {
-      name: "Felipe Quintanilha",
-      email: "felipe@dsx.com.br",
-      organization_id: "4e2f48e14d571f594306ef424d6e5143"
-    },
-    {
-      name: "Renato Cortes",
-      email: "renato@dsx.com.br",
-      organization_id: "4e2f48e14d571f594306ef424d6e5143"
-    }
-  ];
+  let customerList = [];
 
   const customers = await readAllCustomers({
     name: true, email: true, organization_id: true});
